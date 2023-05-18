@@ -1,0 +1,41 @@
+@import url(../implementosapp/base/variables.css);
+
+#data-container {
+    background-color: #eee;
+}
+
+#data-container nav li {
+    text-transform: uppercase;
+    transition: color 300ms;
+}
+
+#data-container nav li:hover a {
+    color: #007BFF;
+}
+
+#data-container nav li a{
+    color: rgba(33, 37, 41, 0.75);
+    text-decoration: none;
+}
+
+#data-container .list-group-item i {
+    font-size: 15px;
+}
+
+#data-container .list-group-item:hover {
+    color: white;
+    background-color: #007BFF;
+    cursor: pointer;
+}
+
+#data-container .list-group-item:hover i {
+    color: white !important;
+}
+
+#data-container #metrics > *:not(:first-child) {
+    font-size: 0.90rem;
+}
+
+#data-container #metrics .progress {
+    height: 5px;
+}

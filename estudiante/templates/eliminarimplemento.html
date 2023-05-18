@@ -1,0 +1,14 @@
+<h1>Eliminar implementos</h1>
+
+<form method="post">
+  {% csrf_token %}
+  
+  {% for implemento in implementos %}
+    <label>
+      <input type="checkbox" name="implementos_ids" value="{{ implemento.id_implemento }}">
+      {{ implemento }}
+    </label><br>
+  {% endfor %}
+  
+  <input type="submit" value="Eliminar">
+</form>

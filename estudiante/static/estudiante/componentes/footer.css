@@ -1,0 +1,44 @@
+@import url(../base/variables.css);
+
+#footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-color);
+    font-family: var(--);
+    padding-top: 20px;
+}
+
+#footer .logos {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 40px;
+}
+
+#footer .logo-wrap {
+    margin: 0 5px;
+}
+
+#colombia-seal {
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, .35);
+    margin-right: 10px;
+}
+
+#footer h3 {
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+#footer .footer-content-column {
+    border-left: 1px solid #C08E2D;
+}
+
+#footer .footer-content-column ul{
+    list-style: none;
+    padding-left: 1rem;
+}
+
+#footer .footer-content-column a {
+    display: block;
+    text-decoration: none;
+    color: var(--footer-color);
+}

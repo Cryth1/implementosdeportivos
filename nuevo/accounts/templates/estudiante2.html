@@ -1,4 +1,5 @@
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'implementosapp/styles.css' %}" />
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,7 +9,6 @@
     <meta name="description"
         content="Página web de acceso a los estudiantes de la Unimag para el préstamo de implementos deportivos" />
     <title>Préstamo de implementos deportivos - Inicio de sesión</title>
-    {% load static %}
     <link rel="icon" type="image/x-icon" href="https://cdn.unimagdalena.edu.co/images/escudo/bg_light/96.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -18,7 +18,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
-    <link rel="stylesheet" href="{% static 'estudiante/styles.css' %}" />
 </head>
 
 <body>
@@ -27,7 +26,7 @@
             <div class="btn-group me-2" role="group" aria-label="First group">
                 <a class="btn btn-sm">Ir a Unimagdalena</a>
                 <a class="btn btn-sm">Ciudadano</a>
-                <a class="btn btn-sm" href="{% url 'logout' %}">Cerrar sesión</a>
+                <a class="btn btn-sm">Iniciar sesión</a>
             </div>
         </div>
 
@@ -77,14 +76,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for prestamo in prestamos %}
                         <tr>
-                            <td class="p-3"><span class="badge rounded-pill {% if prestamo.Estado == 'prestamo' %}" style="background-color:#EF9834"{% elif prestamo.Estado == 'devuelto' %}" style="background-color:#004A87"{% elif prestamo.Estado == 'vencido' %}bg-danger{% endif %}">{{ prestamo.get_Estado_display }}</span></td>                            <td class="p-3">{{ prestamo.IdImplemento.id_categoria.club_deportivo.nombre }}</td>
-                            <td class="p-3">{{ prestamo.IdImplemento.id_categoria.nombre }}</td>
-                            <td class="p-3">{{ prestamo.FechaPrestamo }}</td>
-                            <td class="p-3">{{ prestamo.FechaDevolucion }}</td>
+                            <td class="p-3"><span class="badge rounded-pill " style="background-color:#EF9834">En préstamo</span></td>
+                            <td class="p-3">Tenis</td>
+                            <td class="p-3">Raqueta</td>
+                            <td class="p-3"><input type="datetime-local"></td>
+                            <td class="p-3"><input type="datetime-local"></td>
                         </tr>
-                        {% endfor %}
+                        <tr>
+                            <td class="p-3"><span class="badge rounded-pill" style="background-color:#004A87">Devuelto</span></td>
+                            <td class="p-3">Fútbol</td>
+                            <td class="p-3">Balón de fútbol</td>
+                            <td class="p-3"><input type="datetime-local"></td>
+                            <td class="p-3"><input type="datetime-local"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3"><span class="badge rounded-pill bg-danger">Vencido</span></td>
+                            <td class="p-3">Voleibol</td>
+                            <td class="p-3">Balón de Voleibol</td>
+                            <td class="p-3"><input type="datetime-local"></td>
+                            <td class="p-3"><input type="datetime-local"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3"><span class="badge rounded-pill " style="background-color:#EF9834">En préstamo</span></td>
+                            <td class="p-3">Baloncesto</td>
+                            <td class="p-3">Balón de baloncesto</td>
+                            <td class="p-3"><input type="datetime-local"></td>
+                            <td class="p-3"><input type="datetime-local"></td>
+                        </tr>
 
                     </tbody>
 
@@ -92,6 +111,7 @@
                 
                 {% if user.is_authenticated %}
 
+                <button type="submit" name="logout" class="btn btn-primary" onclick = "location.href='{% url 'logout' %}'">Cerrar sesión</button>
                 <button type="submit" name="perfil" class="btn btn-primary" onclick = "location.href='{% url 'profile' %}'">Ver Perfil</button>
 
                 {% endif %}

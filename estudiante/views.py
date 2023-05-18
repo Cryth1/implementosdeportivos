@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from estudiante.forms import ImplementoDeportivoForm
 from accounts.models import CustomUser
 
-from .models import Prestamos
+from .models import Prestamos, ImplementosDeportivos
 
 # Create your views here.
 @login_required
@@ -31,3 +31,16 @@ def crear_implemento(request):
             form.save()
             return redirect('estudiante2')
     return render(request, 'crearimplemento.html', {'form': form})
+
+
+
+@login_required
+@user_passes_test(lambda u: u.rol == CustomUser.Role.FUNCIONARIO, login_url='estudiante2')
+def eliminar_implementos(request):
+    if request.method == 'POST':
+        implementos_ids = request.POST.getlist('implementos_ids')
+        ImplementosDeportivos.objects.filter(pk__in=implementos_ids).delete()
+        return redirect('lista_implementos')
+    
+    implementos = ImplementosDeportivos.objects.all()
+    return render(request, 'eliminarimplemento.html', {'implementos': implementos})

@@ -1,0 +1,56 @@
+@import url("../base/variables.css");
+
+#header {
+    height: 130px;
+    margin-bottom: 12px;
+}
+
+#header .btn-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--toolbar-bg-color);
+    margin-bottom: 0px !important;
+}
+
+#header .btn-toolbar .btn {
+    color: var(--toolbar-font-color);
+    font-family: var(--toolbar-font-family);
+    font-size: var(--toolbar-font-size);
+}
+
+#header .navbar {
+    background-color: var(--navbar-bg-color);
+    color: var(--navbar-font-color);
+    font-family: var(--navbar-font-family);
+}
+
+#header .brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--brand-font-size);
+    font-weight: var(--brand-font-weight);
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-right: 15px;
+}
+
+#header .brand a {
+    margin: 0px 5px;
+}
+
+#header .brand span {
+    display: block; 
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#header .navbar .nav-link {
+    display: block;
+    color: var(--navbar-font-color);
+    font-family: var(--navbar-font-family);
+    font-size: var(--navbar-font-size);
+    padding: 10px 5px;
+    margin: 0px 5px;
+}

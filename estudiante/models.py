@@ -30,7 +30,7 @@ class ImplementosDeportivos(models.Model):
     disponibilidad = models.BooleanField()
     
     def __str__(self):
-        return self.id_categoria.nombre
+        return self.id_categoria.nombre + " Marca: " + self.marca + " id: " + str(self.id_implemento)
 
 
     

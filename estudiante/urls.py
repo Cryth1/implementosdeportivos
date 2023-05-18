@@ -7,5 +7,6 @@ from . import views
 
 urlpatterns = [
     path('estudiante2/', views.estudiante2, name = "estudiante2"),
-    path('crearimplemento/', views.crear_implemento, name = "crear_implemento")
+    path('crearimplemento/', views.crear_implemento, name = "crear_implemento"),
+    path('eliminarimplemento/', views.eliminar_implementos, name = "eliminar_implementos")
 ]
