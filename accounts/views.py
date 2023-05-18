@@ -24,6 +24,9 @@ def delete_user(request):
         return redirect('/accounts/login')
     return render(request, 'delete_user.html')
 
+
+
+
 def register(req):
     if req.user.is_authenticated:
         return redirect('estudiante2')
@@ -87,6 +90,6 @@ def profile(request):
     }
     return render(request, 'profile.html', context)
 
-@login_required
-def estudiante2(request):
-    return render(request, "estudiante2.html")
+# @login_required
+# def estudiante2(request):
+#     return render(request, "estudiante2.html")

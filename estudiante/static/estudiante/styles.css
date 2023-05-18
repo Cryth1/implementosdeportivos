@@ -1,0 +1,215 @@
+:root {
+    --toolbar-bg-color: #003A6B;
+    --toolbar-font-color: white;
+    --toolbar-font-family: 'Roboto', sans-serif;
+    --toolbar-font-size: 0.85rem;
+    --brand-font-size: 1.45rem;
+    --brand-font-weight: 400;
+    --navbar-bg-color: #004A87;
+    --navbar-font-color: white;
+    --navbar-font-family: 'leelawadee-regular', sans-serif;
+    --navbar-font-size: 1.125rem;
+    --main-font-family: 'leelawadee-regular', sans-serif;
+    --info-color: #3A7D87;
+    --info-bg-color: #D1ECF1;
+    --info-font-size: 17px;
+    --footer-bg-color: #004A87;
+    --footer-color: white;
+    --footer-font-family:'Roboto', sans-serif;    
+}
+
+#header {
+    height: 130px;
+    margin-bottom: 12px;
+}
+
+#header .btn-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--toolbar-bg-color);
+    margin-bottom: 0px !important;
+}
+
+#header .btn-toolbar .btn {
+    color: var(--toolbar-font-color);
+    font-family: var(--toolbar-font-family);
+    font-size: var(--toolbar-font-size);
+}
+
+#header .navbar {
+    background-color: var(--navbar-bg-color);
+    color: var(--navbar-font-color);
+    font-family: var(--navbar-font-family);
+}
+
+#header .brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--brand-font-size);
+    font-weight: var(--brand-font-weight);
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-right: 15px;
+}
+
+#header .brand a {
+    margin: 0px 5px;
+}
+
+#header .brand span {
+    display: block; 
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#header .navbar .nav-link {
+    display: block;
+    color: var(--navbar-font-color);
+    font-family: var(--navbar-font-family);
+    font-size: var(--navbar-font-size);
+    padding: 10px 5px;
+    margin: 0px 5px;
+    
+}
+
+
+
+
+
+#login-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--main-font-family);
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+#login-container .title {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-right: transparent;
+    border-left: transparent;
+}
+
+#login-container h1 {
+    color: #014B87;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#login .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+}
+
+#login-container .title span {
+    color: gray;
+    font-size: 1.4rem;
+}
+
+#login-container .login-info {
+    width: 45%;
+    color: var(--info-color);
+    background-color: var(--info-bg-color);
+    text-align: center;
+    font-size: var(--info-font-size);
+    border-radius: .25rem;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+#login-container .form-group {
+    width: 45%;
+    text-align: left;
+    margin-top: 15px;
+    margin-bottom: 1 5px;
+}
+
+#login-container .form-group label {
+    padding: 5px;
+}
+
+#login-container .btn {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+}
+
+#footer {
+    background-color: var(--footer-bg-color);
+    color: var(--footer-color);
+    font-family: var(--);
+    padding-top: 20px;
+}
+
+#footer .logos {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 40px;
+}
+
+#footer .logo-wrap {
+    margin: 0 5px;
+}
+
+#colombia-seal {
+    padding-right: 20px;
+    border-right: 1px solid rgba(255, 255, 255, .35);
+    margin-right: 10px;
+}
+
+#footer h3 {
+    font-size: 1.125rem;
+    font-weight: bold;
+}
+
+#footer .footer-content-column {
+    border-left: 1px solid #C08E2D;
+}
+
+#footer .footer-content-column ul{
+    list-style: none;
+    border-left: 1px solid #c08e2d;
+    padding-left: 1rem;
+}
+
+
+#footer .footer-content-column a {
+    display: block;
+    text-decoration: none;
+    color: var(--footer-color);
+}
+
+#searchBar{
+    width: 300px;
+}
+
+
+
+th {
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.badge {
+    font-size: 1em;
+    padding: 10px 10px;
+}
+
+.table {
+    max-width: 70%;
+    margin: auto;
+    margin-top: 10px;
+}

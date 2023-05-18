@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
 
 from django.contrib.auth import views as auth_views
 from accounts import views
@@ -23,13 +24,11 @@ from accounts.views import ChangePasswordView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('register/', views.register, name = "register"),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/login', views.loginf, name="login"),
-    path('estudiante2/', views.estudiante2, name = "estudiante2"),
-    path('profile/', views.profile, name='profile'),
-    path('change_password/', ChangePasswordView.as_view(), name='change_password'),
-    path('delete_user/', views.delete_user, name = 'delete_user')
+    path('', lambda request: redirect('accounts/login', permanent=True)),
+    path('accounts/', include('accounts.urls')),
+    path('estudiante/', include('estudiante.urls')),
+    
+    
 
 ]
 
