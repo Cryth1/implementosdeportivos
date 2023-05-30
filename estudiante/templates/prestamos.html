@@ -73,6 +73,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr style="background-color:#004A87">
+                            <th scope="col">Usuario</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Club deportivo</th>
                             <th scope="col">Implemento deportivo</th>
@@ -83,26 +84,26 @@
                     <tbody>
                         {% for prestamo in prestamos %}
                         <tr>
-                            <td class="p-3"><span class="badge rounded-pill {% if prestamo.Estado == 'prestamo' %}" style="background-color:#EF9834"{% elif prestamo.Estado == 'devuelto' %}" style="background-color:#004A87"{% elif prestamo.Estado == 'vencido' %}bg-danger{% endif %}">
-                                {{ prestamo.get_Estado_display }}
-                            </span>
-                            </td>                            
+                            <td class="p-3">{{ prestamo.IdEstudiante.nombre}}</td>
+                            <td class="p-3">
+                                <span class="badge rounded-pill {% if prestamo.Estado == 'prestamo' %}" style="background-color:#EF9834"{% elif prestamo.Estado == 'devuelto' %}" style="background-color:#004A87"{% elif prestamo.Estado == 'vencido' %}bg-danger{% endif %}">
+                                    {{ prestamo.get_Estado_display }}
+                                </span>
+                            </td>
                             <td class="p-3">{{ prestamo.IdImplemento.id_categoria.club_deportivo.nombre }}</td>
                             <td class="p-3">{{ prestamo.IdImplemento.id_categoria.nombre }}</td>
                             <td class="p-3">{{ prestamo.FechaPrestamo }}</td>
                             <td class="p-3">{{ prestamo.FechaDevolucion }}</td>
                         </tr>
                         {% endfor %}
-
                     </tbody>
-
                 </table>
                 
-                {% if user.is_authenticated %}
+                {% comment %} {% if user.is_authenticated %}
 
                 <button type="submit" name="perfil" class="btn btn-primary" onclick = "location.href='{% url 'profile' %}'">Ver Perfil</button>
 
-                {% endif %}
+                {% endif %} {% endcomment %}
 
             </div>
 

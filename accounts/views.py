@@ -9,6 +9,9 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.decorators import login_required
 
 from django.db.models import Q
+from estudiante.views import prestamos
+
+
 
 
 
@@ -17,6 +20,11 @@ class ChangePasswordView(PasswordChangeView):
     template_name = 'change_password.html'
     success_url = '/profile/'
     
+    
+    
+def redirigir_prestamos(request):
+    return redirect('prestamos')
+
 def delete_user(request):
     if request.method == 'POST':
         user = request.user # obtiene el usuario actual
@@ -27,20 +35,19 @@ def delete_user(request):
 
 
 
-def register(req):
-    if req.user.is_authenticated:
+def register(request):
+    if request.user.is_authenticated:
         return redirect('estudiante2')
-      
-    form = CustomUserCreationForm()
-    if req.method == 'POST':
-        form = CustomUserCreationForm(req.POST)
+
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('estudiante2')
-    return render(req, 'register.html', {'form': form})
+    else:
+        form = CustomUserCreationForm()
 
-
-
+    return render(request, 'register.html', {'form': form})
 
 
 def loginf(req):

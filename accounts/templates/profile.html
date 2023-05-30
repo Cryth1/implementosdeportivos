@@ -43,13 +43,13 @@
         <link rel="icon" type="image/x-icon" href="https://cdn.unimagdalena.edu.co/images/escudo/bg_light/96.png"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"/>
         {% load static%}
-        <link rel="stylesheet" type="text/css" href="{% static 'accounts/componentes/header.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'accounts/componentes/footer.css' %}"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'accounts/profile.css' %}"/>
         <link rel="preconnect" href="https://fonts.googleapis.com"/>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"/>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/componentes/header.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/componentes/footer.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'accounts/profile.css' %}"/>
     </head>
 
     <body>
@@ -114,14 +114,22 @@
                                 <div class="card-body text-center">
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
 
-                                    <h5 class="my-3">John Doe</h5>
+                                    <h5 class="my-3">{{user.nombre}}</h5>
 
-                                    <p class="text-muted mb-1"><span>2018114033 - </span>Estudiante</p>
+                                    <p class="text-muted mb-1"><span>{{user.codigo_usuario}} - </span>{{user.get_rol_display}}</p>
                                     <p class="text-muted mb-4">Universidad del Magdalena</p>
 
                                     <div class="d-flex justify-content-center mb-2">
-                                        <button type="button" class="btn btn-outline-primary">Editar perfil</button>
-                                        <button type="button" class="btn btn-outline-primary ms-1">Configuración</button>
+                                        {% if not edit_mode %}
+                                        <form method="post" action="{% url 'profile' %}">
+                                          {% csrf_token %}
+                                          <button type="submit" name="edit" value="True" class="btn btn-outline-primary">Editar perfil</button>
+                                        </form>
+                                        {% endif %}
+    
+                                        
+                                        
+                                        {% comment %} <button type="button" class="btn btn-outline-primary ms-1">Configuración</button> {% endcomment %}
                                     </div>
                                 </div>
                             </div>
@@ -129,22 +137,22 @@
                             <div class="card mb-4 mb-lg-0">
                                 <div class="card-body p-0">
                                     <ul class="list-group list-group-flush rounded-3">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3" onclick="window.location.href='{% url 'redirigir_prestamos' %}'">
                                             <i class="bi bi-card-list" style="color:gray"></i>
                                             <p class="mb-0">Historial de préstamos</p>
                                         </li>
 
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3"  onclick="location.href='{% url 'change_password' %}'">
                                             <i class="bi bi-shield-fill" style="color: #333333;"></i>
                                             <p class="mb-0">Cambiar contraseña</p>
                                         </li>
 
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3" onclick="location.href='{% url 'delete_user' %}'">
                                             <i class="bi bi-person-dash" style="color: gray"></i>
                                             <p class="mb-0">Eliminar cuenta</p>
                                         </li>
 
-                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center p-3"  onclick="location.href='{% url 'logout' %}'">
                                             <i class="bi bi-box-arrow-left" style="color: #333333;"></i>
                                             <p class="mb-0">Cerrar sesión</p>
                                         </li>
@@ -154,67 +162,106 @@
                         </div>
 
                         <div class="col-lg-8">
+                            {% if not edit_mode %}
                             <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Nombre</p>
-                                        </div>
-
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">John doe</p>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Correo electrónico</p>
-                                        </div>
-
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Johndoe@gmail.com</p>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Celular</p>
-                                        </div>
-
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0"><span>+57 301 341 7512</span></p>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Identificación</p>
-                                        </div>
-
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">1.057.893.521</p>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Dirección</p>
-                                        </div>
-
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">False street 123</p>
-                                        </div>
-                                    </div>
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="mb-0">Nombre</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ user.nombre }}</p>
+                                  </div>
                                 </div>
+                                <hr/>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="mb-0">Correo electrónico</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ user.email }}</p>
+                                  </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="mb-0">Código</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ user.codigo_usuario }}</p>
+                                  </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <p class="mb-0">Rol</p>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{ user.get_rol_display }}</p>
+                                  </div>
+                                </div>
+                            
+                              
+                              </div>
                             </div>
+                          {% else %}
+                            <div class="card mb-4">
+                              <div class="card-body">
+                                <h1>Editar perfil</h1>
+                                <form method="post" action="{% url 'profile' %}">
+                                  {% csrf_token %}
+                                  <div class="row">
+                                    <div class="col-sm-3">
+                                      <p class="mb-0">Nombre</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="nombre" value="{{ user.nombre }}" class="form-control">
+                                    </div>
+                                  </div>
+                                  <hr/>
+                                  <div class="row">
+                                    <div class="col-sm-3">
+                                      <p class="mb-0">Correo electrónico</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                      <input type="email" name="email" value="{{ user.email }}" class="form-control">
+                                    </div>
+                                  </div>
+                                  <hr/>
+                                  <div class="row">
+                                    <div class="col-sm-3">
+                                      <p class="mb-0">Código</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="codigo_usuario" value="{{ user.codigo_usuario }}" class="form-control">
+                                    </div>
+                                  </div>
+                                  <hr/>
+                                  <div class="row">
+                                    <div class="col-sm-3">
+                                      <p class="mb-0">Rol</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                      <p class="text-muted mb-0">{{ user.get_rol_display }}</p>
+                                    </div>
+                                  </div>
+                                  <hr/>
+                                  <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                  <button type="submit" name="cancel" value="True" class="btn btn-secondary">Cancelar</button>
+                                </form>
+                              </div>
+                            </div>
+                          {% endif %}
+                          
+                         
+                          {% if messages %}
+                            <ul class="messages">
+                              {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                          
 
                             <div class="row">
                                 <div class="col">

@@ -14,6 +14,7 @@ urlpatterns = [
     path('change_password/', ChangePasswordView.as_view(), name='change_password'),
     path('delete_user/', views.delete_user, name = 'delete_user'),
     path('', include('django.contrib.auth.urls')),
+    path('redirigir_prestamos/', views.redirigir_prestamos, name='redirigir_prestamos'),
    
 
 ]

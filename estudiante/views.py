@@ -22,6 +22,17 @@ def estudiante2(request):
 
 @login_required
 @user_passes_test(lambda u: u.rol == CustomUser.Role.FUNCIONARIO, login_url='estudiante2')
+def prestamos(request):
+    prestamos = Prestamos.objects.all()
+
+    context = {
+        'prestamos': prestamos
+    }
+
+    return render(request, "prestamos.html", context)
+
+@login_required
+@user_passes_test(lambda u: u.rol == CustomUser.Role.FUNCIONARIO, login_url='estudiante2')
 def crear_implemento(request):
     
     form = ImplementoDeportivoForm

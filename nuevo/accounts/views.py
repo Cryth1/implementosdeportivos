@@ -15,7 +15,7 @@ from django.db.models import Q
 class ChangePasswordView(PasswordChangeView):
     form_class = PasswordChangeForm
     template_name = 'change_password.html'
-    success_url = '/profile/'
+    success_url = 'accounts/profile/'
     
 def delete_user(request):
     if request.method == 'POST':
