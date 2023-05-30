@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="description" content="Crea y añade un implemento a la lista de disponibles"/>
-        <title>Préstamo de implementos deportivos - Añadir un implemento a la lista</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Página web de acceso a los estudiantes de la Unimag para el préstamo de implementos deportivos" />
+        <title>Préstamo de implementos deportivos - Inicio de sesión</title>
         {% load static %}
         <link rel="icon" type="image/x-icon" href="https://cdn.unimagdalena.edu.co/images/escudo/bg_light/96.png" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://www.dafontfree.net/embed/bGVlbGF3YWRlZS1yZWd1bGFyJmRhdGEvNDkvbC8zODE0MS9sZWVsYXdhZC50dGY" />
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"/>
-        <link rel="stylesheet" type="text/css" href="{% static 'estudiante/implement_creation.css' %}"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap">
+        <link rel="stylesheet" type="text/css" href="{% static 'estudiante/dashboard.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'estudiante/componentes/header.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'estudiante/componentes/footer.css' %}"/>
     </head>
@@ -22,9 +22,9 @@
         <header id="header" class="row">
             <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group me-2" role="group" aria-label="First group">
-                    <a class="btn btn-sm" href="#">Ir a Unimagdalena</a>
-                    <a class="btn btn-sm" href="#">Ciudadano</a>
-                    <a class="btn btn-sm" href="#">Iniciar sesión</a>
+                    <a class="btn btn-sm" href="#">Estudiante</a>
+                    <a class="btn btn-sm" href="#">Funcionario</a>
+                    <a class="btn btn-sm" href="{% url 'logout' %}">Cerrar sesión</a>
                 </div>
             </div>
 
@@ -45,9 +45,9 @@
                         
                         <div class="collapse navbar-collapse" id="navbar-toggler">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}">Inicio</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{% url 'eliminar_implementos' %}">Eliminar implementos</a></li>
-                                
+                                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'prestamos' %}">Ver Prestamos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'crear_implemento' %}">Crear Implementos</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'crear_prestamo' %}">Crear Prestamo</a></li>
                             </ul>
                         </div>
                     </div>
@@ -55,49 +55,75 @@
             </nav>
         </header>
 
-
-        <main id="main-container" class="row p-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">Crear implemento</h5>
-
-                            <form method="POST" action="{% url 'crear_implemento' %}">
-                              {% csrf_token %}
-                                <div class="mb-3">
-                                    <label for="categories" class="form-label">Categoría</label>
-                                    <select class="form-select" id="categories" name="id_categoria" required>
-                                        {% for categoria in categorias %}
-                                        <option value="{{ categoria.id_categoria }}">{{ categoria.nombre }}</option>
-                                        {% endfor %}
-                                    </select>    
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="brand" class="form-label">Marca</label>
-                                    <input type="text" class="form-control" id="brand"  name="marca" required pattern="[a-zA-Z]+"/>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="amount" class="form-label">Cantidad</label>
-                                    <input type="number" class="form-control" id="amount" name="cantidad" required pattern="[1-9]+"/>
-                                </div>
-
-                                <div class="d-flex align-items-center mb-3">
-                                    <label for="availability" class="form-label me-2">Disponibilidad</label>
-                                    <input type="checkbox" class="form-check ms-2" id="availability" name="disponibilidad" required />
-                                </div>
-
-                                <div class="d-flex justify-content-center mt-4 mb-3">
-                                    <button type="submit" class="btn btn-primary" value="Submit">Crear implemento</button> 
-                                </div>
-                            </form>
+        <main id="main" class="container-fluid">
+            <section class="row justify-content-center pt-5">
+                <div class="data-box col-12 col-md-3 text-center">
+                    <div class="box-wrap">
+                        <div class="data-box-title">
+                            <span>Implementos prestados</span>
+                            <i class="data-box-icon bg-blue bi bi-emoji-smile"></i>
+                        </div>
+                        
+                        <div class="data-box-fact">
+                            <span class="ps-2">27</span>
+                        </div>
+                        
+                        <div class="data-box-details">
+                            <span class="text-success fw-bold">5.39%</span>
+                            <p class="text-secondary">más que la semana anterior</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            
+
+                <div class="data-box col-12 col-md-3 text-center">
+                    <div class="box-wrap">
+                        <div class="data-box-title">
+                            <span>Préstamos vencidos</span>
+                            <i class="data-box-icon bg-red bi bi-emoji-frown"></i>
+                        </div>
+                        
+                        <div class="data-box-fact">
+                            <span class="ps-3">9</span>
+                        </div>
+                        
+                        <div class="data-box-details ps-3">
+                            <span class="text-danger fw-bold">3.37%</span>
+                            <p class="text-secondary">menos que la semana anterior</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="data-box col-12 col-md-3 text-center">
+                   <div class="box-wrap">
+                     <div class="data-box-title">
+                         <span>Grupo con más préstamos</span>
+                         <i class="data-box-icon bg-green bi bi-people"></i>
+                     </div>
+
+                     <div class="data-box-fact">
+                        <span>Tenis</span>
+                     </div>
+                    
+                     <div class="data-box-details justify-content-start ps-4">
+                         <span class="text-success fw-bold">7 préstamos</span>
+                     </div>
+                   </div>
+                </div>
+            </section>
+
+            <section class="row justify-content-center pt-5">
+                <div class="graph-box col-12 col-md-5">
+                    <div class="img-wrap">
+                        <img src="{% static 'estudiante/img/prestamos.jpeg' %}" alt="gráfica de préstamos realizados"/>
+                    </div>
+                </div>
+
+                <div class="graph-box col-12 col-md-5">
+                    <div class="img-wrap">
+                        <img src="{% static 'estudiante/img/prestamosporGrupo.jpeg' %}" alt="gráfica de préstamos realizados por grupos"/>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer id="footer">
@@ -106,15 +132,19 @@
                     <div class="logo-wrap">
                         <img src="https://cdn.unimagdalena.edu.co/images/escudo/bg_dark/default.png" alt="escudo de la Universidad del Magdalena" id="emblemUnimag"class="logo">
                     </div>
+
                     <div class="logo-wrap">
                         <img src="https://cdn.unimagdalena.edu.co/images/years_96.png" alt="escudo de los años que cumplió la Universidad del Magdalena" id="years-unimag"class="logo">
                     </div>
+
                     <div class="logo-wrap">
                         <img src="https://cdn.unimagdalena.edu.co/images/acreditacion/default-border.png" alt="marca de acreditación de alta calidad" id="quality-seal" class="logo">
                     </div>
+
                     <div class="logo-wrap">
                         <img src="https://cdn.unimagdalena.edu.co/images/escudo_colombia.png" alt="escudo de Colombia" id="colombia-seal" class="logo">
                     </div>
+
                     <div class="logo-wrap">
                         <img src="https://cdn.unimagdalena.edu.co/images/calidad/bg-dark/default.png" alt="sellos de calidad" id="quality-seals" class="logo">
                     </div>
@@ -181,7 +211,7 @@
                 </section>
             </div>
         </footer>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
 </html>
