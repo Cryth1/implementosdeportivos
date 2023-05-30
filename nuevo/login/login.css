@@ -73,3 +73,8 @@
     margin-left: 10px;
     white-space: nowrap;
 }
+
+#login-container .register-box a{
+    text-decoration: none;
+    color: #959293;
+}

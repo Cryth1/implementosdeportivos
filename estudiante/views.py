@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from estudiante.forms import ImplementoDeportivoForm
 from accounts.models import CustomUser
 
-from .models import Prestamos, ImplementosDeportivos
+from .models import Prestamos, ImplementosDeportivos, CategoriasImplementos
 
 # Create your views here.
 @login_required
@@ -38,10 +38,17 @@ def crear_implemento(request):
     form = ImplementoDeportivoForm
     if request.method == 'POST':
         form = ImplementoDeportivoForm(request.POST)
+        print(form.is_valid())
+        print(form.errors)
         if form.is_valid():
-            form.save()
-            return redirect('estudiante2')
-    return render(request, 'crearimplemento.html', {'form': form})
+            cantidad = form.cleaned_data.get('cantidad')
+            for i in range(cantidad):
+                implemento = form.save(commit=False)
+                implemento.id_implemento = None
+                implemento.save()
+            return redirect('prestamos')    
+    categorias = CategoriasImplementos.objects.all()
+    return render(request, 'crearimplemento.html', {'form': form, 'categorias':categorias})
 
 
 

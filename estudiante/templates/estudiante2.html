@@ -87,10 +87,10 @@
                                 {{ prestamo.get_Estado_display }}
                             </span>
                             </td>                            
-                            <td class="p-3">{{ prestamo.IdImplemento.id_categoria.club_deportivo.nombre }}</td>
-                            <td class="p-3">{{ prestamo.IdImplemento.id_categoria.nombre }}</td>
-                            <td class="p-3">{{ prestamo.FechaPrestamo }}</td>
-                            <td class="p-3">{{ prestamo.FechaDevolucion }}</td>
+                            <td>{{ prestamo.IdImplemento.id_categoria.club_deportivo.nombre }}</td>
+                            <td>{{ prestamo.IdImplemento.id_categoria.nombre }}</td>
+                            <td>{{ prestamo.FechaPrestamo }}</td>
+                            <td >{{ prestamo.FechaDevolucion }}</td>
                         </tr>
                         {% endfor %}
 

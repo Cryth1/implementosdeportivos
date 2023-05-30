@@ -1,0 +1,18 @@
+#main-container form .checks {
+    display: flex;
+    align-items: center;
+}
+
+#main-container form .checks label {
+    order: 2;
+}
+
+#main-container .card-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+#main-container .btn {
+    text-transform: uppercase;
+}

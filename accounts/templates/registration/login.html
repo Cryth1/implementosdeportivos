@@ -68,7 +68,7 @@
                     <span>Inicio de sesión</span>
                 </div>
 
-                <div class="form-container mx-auto">
+                <div class="row justify-content-center form-container mx-auto">
                     <div class="login-info">
                         Ingrese con los datos de su cuenta institucional o con el
                         correo electrónico asignado para ingresar al sistema.
@@ -96,7 +96,9 @@
                                     
                     </form>
                     
-                    <button class="btn btn-primary btn-block mt-4" onclick="location.href='{% url 'register' %}'">Registrarse</button>
+                    <div class="register-box col-md-6 text-center mt-3">
+                        <a href="{% url 'register' %}" class="">¿No tienes una cuenta? Regístrate</a>
+                    </div>
                     {% endblock  %}
                     
                 </div>

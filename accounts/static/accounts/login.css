@@ -1,4 +1,4 @@
-@import url("../implementosapp/base/variables.css");
+@import url("base/variables.css");
 
 #login-container {
     display: flex;
@@ -72,4 +72,9 @@
     margin-right: 10px;
     margin-left: 10px;
     white-space: nowrap;
+}
+
+#login-container .register-box a{
+    text-decoration: none;
+    color: #959293;
 }
