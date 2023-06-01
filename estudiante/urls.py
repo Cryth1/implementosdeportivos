@@ -11,5 +11,6 @@ urlpatterns = [
     path('eliminarimplemento/', views.eliminar_implementos, name = "eliminar_implementos"),
     path('prestamos/', views.prestamos, name='prestamos'),
     path('crearprestamo/', views.crear_prestamo, name='crear_prestamo'),
-    path('dashboard/', views.dashboard, name='dashboard')
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('reporte-pdf/', views.generar_reporte_pdf, name='reporte_pdf'),
 ]

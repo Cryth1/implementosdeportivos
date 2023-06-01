@@ -65,13 +65,13 @@
                         </div>
                         
                         <div class="data-box-fact">
-                            <span class="ps-2">27</span>
+                            <span class="ps-2">{{implementos_prestados}}</span>
                         </div>
                         
-                        <div class="data-box-details">
+                        {% comment %} <div class="data-box-details">
                             <span class="text-success fw-bold">5.39%</span>
                             <p class="text-secondary">más que la semana anterior</p>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
 
@@ -83,17 +83,17 @@
                         </div>
                         
                         <div class="data-box-fact">
-                            <span class="ps-3">9</span>
+                            <span class="ps-3">{{ prestamos_vencidos }}</span>
                         </div>
                         
-                        <div class="data-box-details ps-3">
+                        {% comment %} <div class="data-box-details ps-3">
                             <span class="text-danger fw-bold">3.37%</span>
                             <p class="text-secondary">menos que la semana anterior</p>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
                 
-                <div class="data-box col-12 col-md-3 text-center">
+                {% comment %} <div class="data-box col-12 col-md-3 text-center">
                    <div class="box-wrap">
                      <div class="data-box-title">
                          <span>Grupo con más préstamos</span>
@@ -108,19 +108,13 @@
                          <span class="text-success fw-bold">7 préstamos</span>
                      </div>
                    </div>
-                </div>
+                </div> {% endcomment %}
             </section>
 
             <section class="row justify-content-center pt-5">
                 <div class="graph-box col-12 col-md-5">
                     <div class="img-wrap">
-                        <img src="{% static 'estudiante/img/prestamos.jpeg' %}" alt="gráfica de préstamos realizados"/>
-                    </div>
-                </div>
-
-                <div class="graph-box col-12 col-md-5">
-                    <div class="img-wrap">
-                        <img src="{% static 'estudiante/img/prestamosporGrupo.jpeg' %}" alt="gráfica de préstamos realizados por grupos"/>
+                        <img src="{{ruta_archivo}}" alt="gráfica de préstamos realizados y vencidos"/>
                     </div>
                 </div>
             </section>

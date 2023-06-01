@@ -101,6 +101,7 @@
                 {% if user.is_authenticated %}
 
                 <button type="submit" name="perfil" class="btn btn-primary" onclick = "location.href='{% url 'profile' %}'">Ver Perfil</button>
+                <a href="{% url 'reporte_pdf' %}" class="btn btn-primary">Generar Informe PDF</a>
 
                 {% endif %}
 
