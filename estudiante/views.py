@@ -47,28 +47,28 @@ def estudiante2(request):
 def generar_reporte_pdf(request):
   
     if request.user.rol == CustomUser.Role.ESTUDIANTE:
-        # Usuario es ESTUDIANTE, filtrar datos correspondientes
+    
         prestamos = Prestamos.objects.filter(IdEstudiante=request.user)
     elif request.user.rol == CustomUser.Role.FUNCIONARIO:
-        # Usuario es FUNCIONARIO, filtrar datos correspondientes
+      
         prestamos = Prestamos.objects.all()
 
 
 
-     # Crear un objeto BytesIO para generar el PDF en memoria
+     
     buffer = BytesIO()
 
-  # Crear el objeto PDF
+  
     doc = SimpleDocTemplate(buffer, pagesize=letter)
 
-    # Lista para almacenar los datos de la tabla
+
     data = []
 
-    # Agregar encabezados de la tabla
+
     headers = ["Nombre","Estado", "Categoría", "Implemento", "Fecha de Préstamo", "Fecha de Devolución"]
     data.append(headers)
 
-    # Agregar los datos al PDF
+   
     for prestamo in prestamos:
         row = [
             prestamo.IdEstudiante.nombre,
@@ -80,7 +80,7 @@ def generar_reporte_pdf(request):
         ]
         data.append(row)
 
-    # Establecer estilo de la tabla
+
     table_style = TableStyle([
         ('BACKGROUND', (0, 0), (-1, 0), colors.gray),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
@@ -98,19 +98,18 @@ def generar_reporte_pdf(request):
         ('GRID', (0, 0), (-1, -1), 1, colors.black),
     ])
 
-    # Crear la tabla y aplicar el estilo
+
     table = Table(data)
     table.setStyle(table_style)
 
-    # Agregar la tabla al documento PDF
+
     elements = [table]
     doc.build(elements)
 
-    # Establecer las cabeceras de la respuesta HTTP
+ 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="reporte.pdf"'
 
-    # Obtener los datos del objeto BytesIO y escribirlos en la respuesta
     pdf = buffer.getvalue()
     buffer.close()
     response.write(pdf)
@@ -129,7 +128,7 @@ def generar_grafico():
         elif dato['Estado'] == 'vencido':
             prestamos_vencidos = dato['count']
     
-    # Crear el gráfico
+    
     etiquetas = ['Realizados', 'Vencidos']
     valores = [prestamos_realizados, prestamos_vencidos]
     
@@ -138,7 +137,7 @@ def generar_grafico():
     plt.ylabel('Cantidad')
     plt.title('Préstamos realizados y vencidos')
     
-    # Guardar el gráfico en un archivo
+  
     ruta_archivo = 'estudiante/static/estudiante/img/prestamos.png'
     plt.savefig(ruta_archivo)
     
@@ -154,14 +153,14 @@ def dashboard(request):
     implementos_prestados = Prestamos.objects.count()
     prestamos_vencidos = Prestamos.objects.filter(Estado='vencido').count()
     
-     # Obtener la ruta del archivo relativa al directorio de archivos estáticos
+    
     ruta_archivo = os.path.join('estudiante', 'img', 'prestamos.png')
     
-    # Obtener la ruta completa al archivo estático utilizando reverse()
+
     ruta_completa = static(ruta_archivo) + '?t=' + timestamp
 
    
-    # Pasar la ruta del archivo al template
+   
     context = {'ruta_archivo':ruta_completa, 'implementos_prestados': implementos_prestados, 'prestamos_vencidos': prestamos_vencidos}
     
     return render(request, "dashboard.html", context)
